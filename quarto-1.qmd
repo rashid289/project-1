@@ -1,5 +1,33 @@
 ---
 title: "Untitled"
+author: "Rahid Abbasi"
+execute: 
+  echo: false
 format: html
 ---
+
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressMessages(library(palmerpenguins))
+```
+
+
+```{r}
+# Create a scatter plot, removing NA values
+penguins %>%
+  drop_na() %>%  # Remove rows with missing values
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = species)) +
+  geom_point(size = 4) +
+  labs(title = "Penguin Bill Length vs Bill Depth",
+       subtitle = "Data from Palmer Penguins",
+       x = "Bill Length (mm)",
+       y = "Bill Depth (mm)",
+       caption = "Source: palmerpenguins package") +
+  theme_minimal(base_size = 15) +
+  theme(legend.position = "top") +
+  scale_color_brewer(palette = "Set1") +
+  scale_shape_manual(values = c(16, 17, 18))
+
+```
 
